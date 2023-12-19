@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { FamilyContext } from '../App';
 
 const Parents = () => {
 
+  const family = useContext(FamilyContext);
 
   return (
     <section className="parents">
-     <FamilyContext.Consumer>
 
       {family.parents.map(p => (
         <div className="person" key={p.name}>
@@ -14,7 +14,6 @@ const Parents = () => {
           <strong>{p.name}</strong>
         </div>
       ))}
-    </FamilyContext.Consumer>
 
     </section>
   );
