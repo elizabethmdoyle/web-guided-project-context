@@ -5,12 +5,15 @@ import { data } from "./data";
 import FamilyTree from "./components/FamilyTree";
 import "./styles.scss";
 
+export const FamilyContext = createContext();
+
 export default function App() {
   const [families] = useState(data);
   const [activeFamily, setActiveFamily] = useState(families[0]);
 
   return (
     <div className="App">
+      <FamilyContext.Provider value={activeFamily}> 
       <section className="header">
         <h1>Family Trees</h1>
         {families.map(family => (
@@ -24,7 +27,10 @@ export default function App() {
           </button>
         ))}
       </section>
-      {activeFamily && <FamilyTree family={activeFamily} />}
+
+      {activeFamily && <FamilyTree family={activeFamily}  />}
+      </FamilyContext.Provider>
+     
     </div>
   );
 }
